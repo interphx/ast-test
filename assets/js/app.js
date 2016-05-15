@@ -144,6 +144,13 @@ function replaceAt(str, start, end, replacement) {
     return str.substring(0, start) + replacement + str.substring(end);
 }
 
+function blinkCode(editor, range) {
+    var marker = editor.getSession().addMarker(range, 'editor-code-blink', true);
+    setTimeout(function() {
+        editor.getSession().removeMarker(marker);
+    }, 500);
+}
+
 var AppView = (function(){
     function AppView() {
         var self = this;
@@ -186,7 +193,6 @@ var AppView = (function(){
                     };
                     var simplifiable_binary_op_regex = /([0-9]+)\s*([\+\-])\s*([0-9]+)/ig;
                     function simplifyMatch(match, lhs_match, op, rhs_match) {
-                        console.log(arguments);
                         var lhs = parseInt(lhs_match);
                         var rhs = parseInt(rhs_match);
                         if (!isFinite(lhs) || !isFinite(rhs)) return match;
@@ -196,7 +202,9 @@ var AppView = (function(){
                     new_clicks_arg = new_clicks_arg.replace(simplifiable_binary_op_regex, simplifyMatch);
                     
                     binding.editor.getSession().replace(replace_range, new_clicks_arg.toString());
-                    
+                    var blink_range = replace_range.clone();
+                    blink_range.end.column = blink_range.start.column + new_clicks_arg.toString().length;
+                    blinkCode(binding.editor, blink_range);
                     app_view.ignoreChangeEvents = false;
                     app_view.onCodeChanged();
                 });

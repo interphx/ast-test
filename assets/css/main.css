@@ -20,6 +20,29 @@
 .editor__error:before {
     content: 'Error: '
 }
+.editor-code-blink {
+    position: absolute;
+    background: transparent;
+    z-index: 40;
+    -webkit-animation: fadeIn 0.5s, fadeOut 0.5s;
+    animation: fadeIn 0.5s, fadeOut 0.5s;
+}
+@-webkit-keyframes fadeIn {
+    from { background: transparent }
+    to { background: #FFBB11 }
+}
+@keyframes fadeIn {
+    from { background: transparent }
+    to { background: #FFBB11 }
+}
+@-webkit-keyframes fadeOut {
+    from { background: #FFBB11 }
+    to { background: transparent }
+}
+@keyframes fadeOut {
+    from { background: #FFBB11 }
+    to { background: transparent }
+}
 
 .output {
     position: relative;
