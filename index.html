@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WhatIsCode</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+</head>
+
+<body>
+
+    <div style="display:none" data-define-template="main">
+        <div class="editor">
+            <div class="editor__text ace-editor">createElement('button', 10, 10, 64, 48, 'Click', 0)</div>
+            <div class="editor__errors">
+                {{#each errors}}
+                    <div class="editor__error">{{ this.text }}</div>
+                {{/each}}
+            </div>
+        </div>
+        <div class="timeline">
+        </div>
+        Output:
+        <div class="output">
+        </div>
+    </div>
+    
+    <div class="wrapper">
+    
+    </div>
+    
+    <script src="assets/js/vendor/esprima.min.js"></script>
+    <script src="assets/js/vendor/escodegen.browser.min.js"></script>
+    <script src="assets/js/vendor/jquery-2.2.3.min.js"></script>
+    <script src="assets/js/vendor/jquery.transit.min.js"></script>
+    <script src="assets/js/vendor/ace/ace.js"></script>
+    <script src="assets/js/vendor/ractive-legacy.min.js"></script>
+    <script src="assets/js/vendor/js-traverse.min.js"></script>
+    
+    <script src="assets/js/app.js"></script>
+</body>
+</html>
